@@ -1,0 +1,201 @@
+.local-expert-insights {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.insights-header {
+  margin-bottom: 10px;
+}
+
+.insights-header h3 {
+  color: var(--primary-color);
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+}
+
+.insights-header p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.insights-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.insight-card {
+  background-color: var(--bg-secondary);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+}
+
+.insight-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.insight-card.active {
+  border-left-color: var(--primary-color);
+  background-color: var(--bg-hover);
+}
+
+.expert-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.expert-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--primary-light);
+}
+
+.expert-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.expert-details h4 {
+  margin: 0 0 5px;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.expert-title {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.insight-content {
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.insight-content p {
+  margin: 0 0 15px;
+}
+
+.expert-tip {
+  background-color: var(--bg-primary);
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.tip-label {
+  font-weight: 600;
+  color: var(--primary-color);
+  display: block;
+  margin-bottom: 5px;
+}
+
+.expert-tip p {
+  margin: 0;
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+.active-expert-bio {
+  background-color: var(--bg-secondary);
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.active-expert-bio h4 {
+  color: var(--primary-color);
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.active-expert-bio p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.no-insights {
+  background-color: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.insights-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .expert-info {
+    gap: 10px;
+  }
+  
+  .expert-avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .expert-details h4 {
+    font-size: 1rem;
+  }
+  
+  .insight-card {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .insight-card {
+    padding: 12px;
+  }
+  
+  .expert-avatar {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .expert-details h4 {
+    font-size: 0.95rem;
+  }
+  
+  .expert-title {
+    font-size: 0.8rem;
+  }
+}

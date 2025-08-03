@@ -1,0 +1,206 @@
+/* Theme variables for light and dark mode */
+:root {
+  /* Primary colors - Inspired by Indore's Rajwada Palace and traditional textiles */
+  --primary-color: #d35400; /* Warm orange-red, inspired by Rajwada sandstone */
+  --primary-dark: #a04000;  /* Deeper shade for emphasis */
+  --primary-light: #fdebd0;  /* Light cream for backgrounds */
+
+  /* Accent colors - Inspired by Indore's festivals and textiles */
+  --accent-color: #2980b9;  /* Royal blue, inspired by traditional Maheshwari textiles */
+  --accent-dark: #1a5276;   /* Deeper blue for emphasis */
+  --accent-light: #d6eaf8;  /* Light blue for subtle accents */
+
+  /* Secondary accent - For category indicators and highlights */
+  --secondary-accent: #27ae60; /* Green, inspired by Indore's gardens */
+  --secondary-accent-dark: #196f3d;
+  --secondary-accent-light: #d5f5e3;
+
+  /* Background colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9f5f0; /* Warm off-white, inspired by sandstone */
+  --bg-gradient: linear-gradient(to bottom right, #fef9e7, #f9f5f0);
+  --bg-card: #ffffff;
+  --bg-hover: #fef5e7; /* Subtle warm hover state */
+
+  /* Text colors */
+  --text-primary: #2c3e50; /* Deep blue-gray for better readability */
+  --text-secondary: #7f8c8d; /* Muted gray for secondary text */
+  --text-light: #95a5a6;
+
+  /* Border colors */
+  --border-color: #e8e0d5; /* Warm border color */
+  --border-light: #f4f1ea;
+
+  /* Shadow - Warmer shadows to match the color scheme */
+  --shadow-sm: 0 2px 5px rgba(160, 64, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(160, 64, 0, 0.08);
+  --shadow-lg: 0 8px 16px rgba(160, 64, 0, 0.12);
+
+  /* Category colors */
+  --historical-color: #8e44ad; /* Purple for historical places */
+  --religious-color: #f39c12; /* Gold for religious places */
+  --food-color: #e74c3c;      /* Red for food places */
+  --nature-color: #27ae60;    /* Green for nature places */
+
+  /* Navbar */
+  --navbar-bg: rgba(255, 255, 255, 0.9);
+  --navbar-text: #2c3e50;
+
+  /* Transitions */
+  --transition-speed: 0.3s;
+
+  /* Animation */
+  --animation-curve: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Dark mode variables */
+body.dark-mode {
+  /* Primary colors - adjusted for dark mode */
+  --primary-color: #e67e22; /* Brighter orange for dark mode */
+  --primary-dark: #d35400;
+  --primary-light: #7d3a12; /* Darker background for dark mode */
+
+  /* Accent colors - adjusted for dark mode */
+  --accent-color: #3498db; /* Brighter blue for dark mode */
+  --accent-dark: #2980b9;
+  --accent-light: #1a5276;
+
+  /* Secondary accent */
+  --secondary-accent: #2ecc71;
+  --secondary-accent-dark: #27ae60;
+  --secondary-accent-light: #196f3d;
+
+  /* Background colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2c2c2c;
+  --bg-gradient: linear-gradient(to bottom right, #2c2c2c, #1a1a1a);
+  --bg-card: #333333;
+  --bg-hover: #3d3d3d;
+
+  /* Text colors */
+  --text-primary: #ecf0f1;
+  --text-secondary: #bdc3c7;
+  --text-light: #95a5a6;
+
+  /* Border colors */
+  --border-color: #444444;
+  --border-light: #555555;
+
+  /* Shadow - darker for dark mode */
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+
+  /* Category colors - brighter for dark mode */
+  --historical-color: #9b59b6;
+  --religious-color: #f1c40f;
+  --food-color: #e74c3c;
+  --nature-color: #2ecc71;
+
+  /* Navbar */
+  --navbar-bg: rgba(26, 26, 26, 0.95);
+  --navbar-text: #ecf0f1;
+}
+
+/* Apply base styles */
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Utility classes for theme colors */
+.bg-primary { background-color: var(--bg-primary); }
+.bg-secondary { background-color: var(--bg-secondary); }
+.bg-gradient { background: var(--bg-gradient); }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-accent { color: var(--accent-color); }
+.border { border: 1px solid var(--border-color); }
+
+/* Loading spinner styles */
+.page-loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+}
+
+.spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--bg-card);
+  border-radius: 8px;
+  box-shadow: var(--shadow-md);
+  animation: fadeIn 0.3s var(--animation-curve);
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--primary-light);
+  border-top: 4px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.spinner-container p {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.chatbot-loading {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+  animation: pulse 1.5s infinite;
+}
+
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(211, 84, 0, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(211, 84, 0, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(211, 84, 0, 0); }
+}
+
+/* Page transition animations */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--transition-speed), transform var(--transition-speed);
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity var(--transition-speed), transform var(--transition-speed);
+}

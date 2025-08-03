@@ -1,0 +1,191 @@
+/* Base container styles */
+.lazy-image-container {
+  position: relative !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  box-shadow: var(--shadow-sm, 0 2px 4px rgba(0,0,0,0.1)) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  display: block !important;
+  background-color: var(--bg-secondary, #f5f5f5) !important;
+  min-height: 200px !important; /* Ensure container has minimum height */
+}
+
+.lazy-image-container:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0,0,0,0.15)) !important;
+}
+
+/* The actual image */
+.lazy-image {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  transition: opacity 0.3s ease, transform 0.5s ease;
+  opacity: 1 !important; /* Force opacity to 1 */
+  border-radius: inherit;
+  z-index: 1; /* Ensure image is above background but below loading indicator */
+  display: block !important;
+}
+
+.lazy-image.loading {
+  opacity: 0.8 !important; /* Make loading images slightly visible */
+  transform: scale(1.05);
+}
+
+.lazy-image.loaded {
+  opacity: 1 !important;
+  transform: scale(1);
+}
+
+/* Loading placeholder */
+.lazy-image-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary, #f5f5f5);
+  color: white;
+  z-index: 2; /* Ensure loading indicator is above the image */
+}
+
+.loading-indicator {
+  width: 30px;
+  height: 30px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+.loading-text {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Error state */
+.lazy-image-error {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  z-index: 1;
+  background-image: linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.1) 75%, transparent 75%, transparent);
+  background-size: 20px 20px;
+  animation: move-background 3s linear infinite;
+}
+
+@keyframes move-background {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+.lazy-image-error i {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.lazy-image-error span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
+}
+
+.error-subtitle {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  margin-top: 0.8rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Image attribution */
+.image-attribution {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  border-top-left-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.lazy-image-container:hover .image-attribution {
+  opacity: 1;
+}
+
+/* Category badge */
+.category-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 2;
+  box-shadow: var(--shadow-sm, 0 2px 4px rgba(0,0,0,0.1));
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+/* Category-specific styles */
+.category-badge.historical {
+  background-color: var(--historical-color, #8e44ad);
+}
+
+.category-badge.religious {
+  background-color: var(--religious-color, #e67e22);
+}
+
+.category-badge.food {
+  background-color: var(--food-color, #e74c3c);
+}
+
+.category-badge.nature {
+  background-color: var(--nature-color, #27ae60);
+}
+
+/* Animation for loading spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Animation for pulsing elements */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+/* End of file */

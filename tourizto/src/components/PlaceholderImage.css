@@ -1,0 +1,121 @@
+.placeholder-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm, 0 2px 4px rgba(0,0,0,0.1));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: white;
+}
+
+.placeholder-image:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0,0,0,0.15));
+}
+
+.placeholder-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  padding: 1rem;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+}
+
+.placeholder-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+.placeholder-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 90%;
+}
+
+.placeholder-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.placeholder-category {
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  opacity: 0.9;
+}
+
+.placeholder-message {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.placeholder-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: 20px 20px;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* Category badge */
+.placeholder-category-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  z-index: 3;
+  box-shadow: var(--shadow-sm, 0 2px 4px rgba(0,0,0,0.1));
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+/* Category-specific styles */
+.placeholder-image.historical,
+.placeholder-category-badge.historical {
+  background-color: var(--historical-color, #8e44ad);
+}
+
+.placeholder-image.religious,
+.placeholder-category-badge.religious {
+  background-color: var(--religious-color, #e67e22);
+}
+
+.placeholder-image.food,
+.placeholder-category-badge.food {
+  background-color: var(--food-color, #e74c3c);
+}
+
+.placeholder-image.nature,
+.placeholder-category-badge.nature {
+  background-color: var(--nature-color, #27ae60);
+}

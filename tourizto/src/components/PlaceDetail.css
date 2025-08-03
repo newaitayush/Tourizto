@@ -1,0 +1,568 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+.place-detail-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.place-detail-modal {
+  background-color: var(--bg-primary);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  animation: slideUp 0.4s var(--animation-curve);
+  font-family: 'Poppins', sans-serif;
+  transform-origin: bottom center;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.close-detail-modal {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.3s;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close-detail-modal:hover {
+  background-color: rgba(220, 53, 69, 0.9);
+  transform: scale(1.1);
+}
+
+.place-detail-header {
+  position: relative;
+  height: 250px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  overflow: hidden;
+}
+
+.place-detail-header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.place-detail-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7));
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  z-index: 1;
+}
+
+.place-detail-header-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  z-index: 2;
+}
+
+.image-attribution {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.place-detail-header-content h2 {
+  font-size: 2rem;
+  margin: 0 0 5px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.place-detail-category {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.place-detail-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 15px 5px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.3s var(--animation-curve);
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background-color: var(--primary-color);
+  transition: all 0.3s var(--animation-curve);
+  transform: translateX(-50%);
+}
+
+.tab-btn:hover {
+  color: var(--primary-color);
+}
+
+.tab-btn:hover::after {
+  width: 40%;
+}
+
+.tab-btn.active {
+  color: var(--primary-color);
+  border-bottom-color: transparent;
+}
+
+.tab-btn.active::after {
+  width: 100%;
+}
+
+.place-detail-content {
+  padding: 20px;
+}
+
+.place-info-tab, .place-map-tab, .place-tips-tab, .place-images-tab, .place-insights-tab, .place-history-tab {
+  animation: fadeIn 0.4s var(--animation-curve);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.place-detail-description {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.place-detail-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.info-item {
+  background-color: var(--bg-secondary);
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s var(--animation-curve);
+  border-left: 3px solid transparent;
+}
+
+.info-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-left-color: var(--primary-color);
+  background-color: var(--bg-hover);
+}
+
+.info-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.info-value {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 300px;
+  background-color: var(--bg-secondary);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.directions-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.view-map-btn, .get-directions-btn {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.view-map-btn {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.get-directions-btn {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.view-map-btn:hover {
+  background-color: var(--border-color);
+}
+
+.get-directions-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-icon {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+.location-info h4, .travel-tips h4, .best-photo-spots h4, .nearby-places h4 {
+  color: var(--primary-color);
+  margin: 20px 0 10px;
+}
+
+.location-info p {
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.nearby-places ul, .travel-tips ul, .best-photo-spots ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.nearby-places li, .travel-tips li, .best-photo-spots li {
+  margin-bottom: 8px;
+  color: var(--text-primary);
+}
+
+/* Google Images Tab Styles */
+.place-images-tab {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.google-images-info h4 {
+  color: var(--primary-color);
+  margin: 0 0 10px;
+}
+
+.google-images-info p {
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.google-images-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.image-preview-placeholder {
+  width: 100%;
+  max-width: 500px;
+  height: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.preview-image:hover {
+  transform: scale(1.03);
+}
+
+.images-note {
+  margin-top: 15px;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Local Insights Tab Styles */
+.place-insights-tab {
+  display: flex;
+  flex-direction: column;
+}
+
+/* History Tab Styles */
+.place-history-tab {
+  display: flex;
+  flex-direction: column;
+}
+
+.google-images-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.google-images-btn {
+  padding: 12px 25px;
+  background-color: #4285F4; /* Google blue */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.google-images-btn:hover {
+  background-color: #3367D6; /* Darker Google blue */
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
+}
+
+.google-images-btn i {
+  font-size: 1.2rem;
+}
+
+.place-detail-footer {
+  padding: 15px 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.book-now-btn {
+  padding: 12px 30px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s var(--animation-curve);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 4px 10px rgba(211, 84, 0, 0.2);
+}
+
+.book-now-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--primary-dark);
+  transition: width 0.3s var(--animation-curve);
+  z-index: -1;
+}
+
+.book-now-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(211, 84, 0, 0.3);
+}
+
+.book-now-btn:hover::before {
+  width: 100%;
+}
+
+.book-now-btn i {
+  margin-right: 8px;
+  transition: transform 0.3s var(--animation-curve);
+}
+
+.book-now-btn:hover i {
+  transform: translateX(-3px);
+}
+
+.free-entry-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.free-badge {
+  display: inline-block;
+  background-color: #4caf50;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.free-entry-info p {
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+}
+
+.directions-btn {
+  padding: 10px 20px;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s var(--animation-curve);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 4px 10px rgba(41, 128, 185, 0.2);
+}
+
+.directions-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--accent-dark);
+  transition: width 0.3s var(--animation-curve);
+  z-index: -1;
+}
+
+.directions-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(41, 128, 185, 0.3);
+}
+
+.directions-btn:hover::before {
+  width: 100%;
+}
+
+.directions-btn i {
+  transition: transform 0.3s var(--animation-curve);
+}
+
+.directions-btn:hover i {
+  transform: translateX(3px);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .place-detail-header {
+    height: 200px;
+  }
+
+  .place-detail-header-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .tab-btn {
+    padding: 12px 5px;
+    font-size: 0.85rem;
+  }
+
+  .directions-buttons {
+    flex-direction: column;
+  }
+
+  .place-detail-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .image-preview-placeholder {
+    height: 250px;
+  }
+
+  .google-images-btn {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
